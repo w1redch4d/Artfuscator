@@ -177,7 +177,7 @@ def wrap_pixel_blocks(pixel_blocks: List[List[List[str]]]):
         for x in range(sx):
             p = pixel_blocks[y][x]
             p.insert(
-                0, f"PIX_{x}_{y}: vfmaddsub132ps xmm0, xmm1, [cs:ebx+edx*4+mem]")
+                0, f"PIX_{x}_{y}: vfmaddsub132ps xmm0, xmm1, [ebx+edx*4+mem]")
             if y+1 == sy:
                 p.append(f" mov esi, {x+1}")
                 p.append(f" jmp PIX_END")
@@ -214,7 +214,7 @@ def wrap_prefix(prefix: List[str]) -> List[str]:
     start_switch = [
         "PIX_START:",
         " mov esi, [PIX_TABLE + 4*esi]",
-        " jmp esi"
+        " jmp rsi"
     ]
     # change jz BB0 to jz PIX_START
     prefix[-2] = prefix[-2].replace("BB0", "PIX_START")

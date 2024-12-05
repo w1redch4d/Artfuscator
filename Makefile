@@ -14,9 +14,9 @@ __check_defined = \
 	$(ELVM_DIR)/out/8cc -I$(ELVM_DIR)/libc -o build/$@.s -S $@.c
 	$(ELVM_DIR)/out/elc -art build/$@.s > build/$@.art.nasm
 	python3 -m artfuscator -i $(IMG) build/$@.art.nasm
-	nasm -f elf32 -o build/$@.art.o build/$@.art.nasm
+	nasm -f elf64 -o build/$@.art.o build/$@.art.nasm 
 	mkdir -p dist
-	ld -m elf_i386 --strip-all -o dist/$@.art build/$@.art.o
+	ld -m elf_x86_64 --strip-all -o dist/$@.art build/$@.art.o
 
 clean:
 	rm -r build

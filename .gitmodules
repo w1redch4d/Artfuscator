@@ -1,4 +1,3 @@
 [submodule "elvm"]
 	path = elvm
-	url = https://github.com/JuliaPoo/elvm
-	branch = art-backend
+	url = https://github.com/w1redch4d/elvm
