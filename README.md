@@ -24,7 +24,7 @@ So a fair bit of warning, I didn't bother to package this project properly. The 
 
 ```bash
 # Clone this repo
-git clone https://github.com/JuliaPoo/Artfuscator
+git clone https://github.com/w1redch4d/Artfuscator
 # Clone all the submodules
 cd Artfuscator
 git submodule update --recursive --init --remote
