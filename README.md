@@ -34,6 +34,7 @@ cd elvm
 # turn amd64 flag on if u want a x64 compatible build
 make art WITH_AMD64=1 
 cd ..
+pip install -r requirements.txt
 ```
 You would also need Python3 and nasm installed.
 
