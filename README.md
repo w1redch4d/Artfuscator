@@ -29,16 +29,17 @@ git clone https://github.com/JuliaPoo/Artfuscator
 cd Artfuscator
 git submodule update --recursive --init --remote
 
-# Build elvm with my bespoke backend
+# Build elvm with my bespoke backend 
 cd elvm
-make art
+# turn amd64 flag on if u want a x64 compatible build
+make art WITH_AMD64=1 
 cd ..
 ```
 You would also need Python3 and nasm installed.
 
 ### Building
 
-Create your C source file in the project's root directory (e.g. `hewwo.c`), and in the same directory, run `make <target> IMG=<filename>` (e.g. `make hewwo IMG=etc/niko-grey.png`). The final binary is compiled in the `dist` folder.
+Create your C source file in the project's root directory (e.g. `hewwo.c`), and in the same directory, run `make <target> IMG=<filename> ARCH=<architecture>` (e.g. `make hewwo IMG=etc/niko-grey.png`). The final binary is compiled in the `dist` folder.
 
 Note that `IMG` must point to a single-channel greyscale image (mode L).
 

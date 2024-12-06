@@ -16,6 +16,10 @@ parser.add_argument(
     "nasmfile", type=str,
     help="nasm filepath"
 )
+parser.add_argument(
+    "--arch", type=str,
+    help="Architecture Type"
+)
 
 args = parser.parse_args()
 
@@ -27,5 +31,5 @@ if art.mode != "L":
         "Image provided isn't a single channel greyscale image! (Mode `L`)"
     )
 
-compiled = compile(nasm_code, np.array(art))
+compiled = compile(nasm_code, np.array(art), arch=args.arch)
 open(args.nasmfile, "w").write(compiled)

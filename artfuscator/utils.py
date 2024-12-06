@@ -208,20 +208,27 @@ def wrap_postfix(postfix: List[str], pixel_blocks: List[List[List[str]]]) \
     return end_switch + pixel_table + postfix
 
 
-def wrap_prefix(prefix: List[str]) -> List[str]:
+def wrap_prefix(prefix: List[str], arch) -> List[str]:
 
     # set esi = 0?
-    start_switch = [
-        "PIX_START:",
-        " mov esi, [PIX_TABLE + 4*esi]",
-        " jmp rsi"
-    ]
+    if arch == "x64":
+        start_switch = [
+            "PIX_START:",
+            " mov esi, [PIX_TABLE + 4*esi]",
+            " jmp rsi"
+        ]
+    else: 
+        start_switch = [
+            "PIX_START:",
+            " mov esi, [PIX_TABLE + 4*esi]",
+            " jmp esi"
+        ]
     # change jz BB0 to jz PIX_START
     prefix[-2] = prefix[-2].replace("BB0", "PIX_START")
     return prefix + start_switch
 
 
-def compile(nasm_code: str, art: np.ndarray) -> str:
+def compile(nasm_code: str, art: np.ndarray, arch) -> str:
 
     lines = nasm_code.split("\n")
     prefix, blocks, postfix = parse_nasm(lines)
@@ -232,7 +239,7 @@ def compile(nasm_code: str, art: np.ndarray) -> str:
 
     pixel_blocks = wrap_pixel_blocks(pixel_blocks)
     postfix = wrap_postfix(postfix, pixel_blocks)
-    prefix = wrap_prefix(prefix)
+    prefix = wrap_prefix(prefix, arch)
 
     return "\n".join(
         prefix
