@@ -24,7 +24,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 nasm_code = open(args.nasmfile).read()
-art = Image.open(args.i)
+art = Image.open(args.i).convert('L')
 
 if art.mode != "L":
     raise Exception(
