@@ -36,6 +36,7 @@ make art WITH_AMD64=1
 cd ..
 pip install -r requirements.txt
 ```
+PS: the `make art` command actually builds the error that occurs is cause of the testcases.
 You would also need Python3 and nasm installed.
 
 ### Building
@@ -43,6 +44,12 @@ You would also need Python3 and nasm installed.
 Create your C source file in the project's root directory (e.g. `hewwo.c`), and in the same directory, run `make <target> IMG=<filename> ARCH=<architecture>` (e.g. `make hewwo IMG=etc/niko-grey.png`). The final binary is compiled in the `dist` folder.
 
 Note that `IMG` must point to a single-channel greyscale image (mode L).
+
+## TODO Fixes
+- argc and argv doesn't work correctly
+- windows support with portable executable
+- crossplatform build support
+- detailed explanation on how it works
 
 ## Examples
 
